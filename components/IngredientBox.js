@@ -10,8 +10,9 @@ class IngredientBox extends React.Component {
     };
   }
 
-  elementClicked(name){
-    console.log(name)
+  elementClicked(ingredient){
+    console.log("IngredientBoxLog: element is " + ingredient)
+    this.props.removeItem(ingredient)
   }
 
   render() {
@@ -20,9 +21,9 @@ class IngredientBox extends React.Component {
         <View style={styles.listContainer} >
           {this.props.list.map( function(ingredient, index){
             return (
-              <TouchableOpacity onPress={this.elementClicked.bind(null, ingredient)} key={index}>
-                <View style={[styles.ingredientBoxes, {width: ingredient.length*10}]} >
-                  <Text> {ingredient} </Text>
+              <TouchableOpacity key={index}>
+                <View style={styles.ingredientBoxes} >
+                  <Text style={styles.ingredientText}> {ingredient} </Text>
                 </View>
               </TouchableOpacity>
             )
@@ -34,9 +35,9 @@ class IngredientBox extends React.Component {
         <View style={styles.listContainer} >
           {this.props.list.map( function(ingredient, index){
             return (
-              <TouchableOpacity onPress={this.elementClicked.bind(null, ingredient)} key={index}>
-                <View style={[styles.ingredientBoxesEditing, {width: ingredient.length*10}]} >
-                  <Text> {ingredient} </Text>
+              <TouchableOpacity onPress={this.elementClicked.bind(this, ingredient)} key={index}>
+                <View style={styles.ingredientBoxesEditing} >
+                  <Text style={styles.ingredientText}> {ingredient} </Text>
                 </View>
               </TouchableOpacity>
             )
@@ -57,16 +58,21 @@ const styles = StyleSheet.create({
   },
   ingredientBoxes: {
     backgroundColor: 'orange',
-    borderRadius: 20,
+    borderRadius: 10,
     height: 30,
-    margin: 5
+    margin: 3
   },
   ingredientBoxesEditing: {
     backgroundColor: 'red',
-    borderRadius: 20,
+    borderRadius: 10,
     height: 30,
-    margin: 5
+    margin: 3
   },
+  ingredientText: {
+    color: '#000000',
+    fontSize: 12,
+    margin: 5
+  }
 });
 
 module.exports = IngredientBox

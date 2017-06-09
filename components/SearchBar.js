@@ -4,7 +4,8 @@ import { StyleSheet, Text, View, TextInput, Button} from 'react-native';
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { text: 'Whats In Your Wallet?'  };
+    this.state = { text: ''  };
+
   }
 
   siriClicked() {
@@ -12,20 +13,21 @@ class SearchBar extends React.Component {
   }
 
   addIngredientClicked() {
-    console.log('done clicked')
-    this.props.list.concat('apple')
+    console.log("SearchBarLog: textInput is " + this.state.text)
+    this.props.itemAdded(this.state.text)
   }
 
   render() {
     return (
       <View style={styles.searchBarContainer}>
         <TextInput
+          placeholder="What's in your Kitchen?"
           style={styles.SearchBarStyle}
           onChangeText={(text) => this.setState({text})}
           value={this.state.text}
           returnKeyType="done"
           onFocus={(text) => this.setState({text})}
-          onSubmitEditing={this.props.itemAddedHandler}
+          onSubmitEditing={this.addIngredientClicked.bind(this)}
         />
         <Button
           onPress={this.siriClicked}
