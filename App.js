@@ -86,13 +86,10 @@ export default class App extends React.Component {
 
       fetch(url).then( function(response) {
         if (response.ok) {
-
           return response
         }
       }).then(function(recipes) {
-        //console.log(recipes)
         this.setState(function() {
-            //console.log('working')
             recipeData: recipes
         })
       }.bind(this)).catch(function(error) {

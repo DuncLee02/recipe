@@ -5,6 +5,7 @@ class RecipeDisplay extends React.Component {
 
   render() {
     console.log("---rerendering recipe list---")
+    console.log("Recipe data: " + this.props.recipeData.length)
     return(
       <View style={styles.MenuContainer} >
         {!this.props.recipeData
@@ -25,7 +26,6 @@ function RecipeList(props) {
   return(
     <View>
     <Text> recipes: </Text>
-    {console.log("recipe data: " + props.recipes)}
     {props.recipes.map( function(aRecipe, index) {
       return(
           <Text> aRecipe </Text>
